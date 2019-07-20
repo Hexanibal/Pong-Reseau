@@ -2,12 +2,12 @@
 Pong game network
 
 
-port server de demande de connection server: 5000
+port server à l'écoute de demande de connection du client au server: 5000 (client: tempTx)
 
-port server à l'écoute du client 1: 5010
-port server à l'écoute du client 2: 5020
+port server à l'écoute du client 1: 5010 (client: Tx)
+port server à l'écoute du client 2: 5020 (client: Tx)
 
-port client réception à l'écoute du serveur: 5001
+port client réception à l'écoute du serveur: 5001 (client: Rx)
 
 
 
