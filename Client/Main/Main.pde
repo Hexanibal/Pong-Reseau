@@ -5,19 +5,19 @@ int state = 1;
 
 String ipServer = null;
 
-int tempPortTx = 5000;
+int portTx = 5000;
 int portRx = 5001;
 
 String received;
 
-String message = "Fromage de brebis";
+String message = "1010";
 
 GUI gui;
 
  
  void setup() {
    size(1280, 720);
-   udp = new UDP(this, tempPortTx);
+   udp = new UDP(this, portTx);
    udp.listen(true);
    
    gui = new GUI();
@@ -26,25 +26,30 @@ GUI gui;
  void draw()
  {
    if(state == 1){
-     if(ipServer != null){
+     gui.display(state);
+   }
+   if(state == 2) {
+     if(ipServer == null){
+       state = 1;
+     } else {
+       ipServer = gui.ip();
+       gui.display(state);
        send(message);
+
      }
-     delay(100);
-     gui.display();
-   } else if(state == 2) {
-     
    }
  }
 
 
 
  void mousePressed() {
+   gui.click(state, mouseX, mouseY);
+   
    if(state == 1){
-     gui.click(mouseX, mouseY);
-     
      if(gui.valid(mouseX, mouseY)) {
        ipServer = gui.ip();
-       message = "he oh";
+       message = "5010";
+       state = 2;
        println(gui.ip());
      }
    }
@@ -54,7 +59,7 @@ GUI gui;
  
  
   void send(String message) {
-     udp.send(message, ipServer, tempPortTx);
+     udp.send(message, ipServer, portTx);
      print("message send: ");
      println(message);
   }
@@ -63,4 +68,9 @@ GUI gui;
      received = new String(data);
      print("reçu: ");
      println(received);
+     
+     if (state == 2 && received != null) {
+       portTx = Integer.parseInt(received);
+     }
+     println(portTx);
   }
