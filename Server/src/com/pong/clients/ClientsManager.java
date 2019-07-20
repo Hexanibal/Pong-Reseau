@@ -1,5 +1,6 @@
 package com.pong.clients;
 
+import java.net.InetAddress;
 import java.util.ArrayList;
 
 public class ClientsManager {
@@ -13,9 +14,10 @@ public class ClientsManager {
 	}
 	
 	
-	
-	public void registerClient(String data) {
-		System.out.println("packet d'enregistrement reçu: " + data);
+	Client client;
+	public void registerClient(InetAddress ip) {
+		client = new Client(ip, (clients.size() == 0) ? 5010 : 5020);
+		addClient(client);
 	}
 	
 	public void addClient(Client client){
@@ -24,5 +26,13 @@ public class ClientsManager {
 	
 	public void removeClient(Client client) {
 		clients.remove(client);
+	}
+	
+	public Client getClient(InetAddress ip) {
+		for(Client client : clients) {
+			if(ip == client.getIp())
+				return client;
+		}
+		return null;
 	}
 }

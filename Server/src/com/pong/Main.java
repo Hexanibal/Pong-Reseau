@@ -10,12 +10,13 @@ public class Main {
 	
 	public static NetworkManager net;
 	public static ClientsManager clientsManager;
-	
+	public static Pong pong;
 	
 	public static void main(String[] args) throws SocketException {
 
 		net = new NetworkManager();
-		clientsManager = new ClientsManager();		
+		clientsManager = new ClientsManager();
+		pong = new Pong();
 		
 	}
 
