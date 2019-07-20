@@ -1,39 +1,66 @@
 import hypermedia.net.*;
 UDP udp;
-String ipServer;
 
+int state = 1;
 
-NetworkManager net;
-GUI gui;
+String ipServer = null;
 
+int tempPortTx = 5000;
+int portRx = 5001;
+
+String received;
 
 String message = "Fromage de brebis";
 
+GUI gui;
+
+ 
  void setup() {
    size(1280, 720);
+   udp = new UDP(this, tempPortTx);
+   udp.listen(true);
    
-   net = new NetworkManager(ipServer);
-   net.send("Fromage");
-   //gui = new GUI();
+   gui = new GUI();
  }
 
  void draw()
  {
-   net.send("fromage");
-   delay(100);
-   //gui.display();
+   if(state == 1){
+     if(ipServer != null){
+       send(message);
+     }
+     delay(100);
+     gui.display();
+   } else if(state == 2) {
+     
+   }
  }
 
 
 
  void mousePressed() {
-   //gui.click(mouseX, mouseY);
+   if(state == 1){
+     gui.click(mouseX, mouseY);
+     
+     if(gui.valid(mouseX, mouseY)) {
+       ipServer = gui.ip();
+       message = "he oh";
+       println(gui.ip());
+     }
+   }
  }
  
  
- void keyPressed() {
-   net.send(str(key));
-}
-
-
  
+ 
+  void send(String message) {
+     udp.send(message, ipServer, tempPortTx);
+     print("message send: ");
+     println(message);
+  }
+  
+  public void receive(byte[] data) {         
+     received = new String(data);
+     print("reçu: ");
+     println(received);
+  }

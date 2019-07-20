@@ -1,6 +1,8 @@
 class GUI{
   String ipServer = "";
   
+  String text = "";
+  
   public GUI() {
      
    
@@ -36,7 +38,7 @@ class GUI{
      fill(255);
      textSize(60);
      text("IP DU SERVEUR:", width/2, 150);
-     text(ipServer, width/2, 250);
+     text(text, width/2, 250);
      
      textSize(40);
      fill(0);
@@ -64,48 +66,57 @@ class GUI{
    
    public void click(int x, int y) {
      if(x > width/2-150-35 && x < width/2-150+35 && y > height/2+15-35 && y < height/2+15+35) {
-       ipServer += "1";
+       text += "1";
      }
      if(x > width/2-50-35 && x < width/2-50+35 && y > height/2+15-35 && y < height/2+15+35) {
-       ipServer += "2";
+       text += "2";
      }
      if(x > width/2+50-35 && x < width/2+50+35 && y > height/2+15-35 && y < height/2+15+35) {
-       ipServer += "3";
+       text += "3";
      }
      if(x > width/2-150-35 && x < width/2-150+35 && y > height/2+115-35 && y < height/2+115+35) {
-       ipServer += "4";
+       text += "4";
      }
      if(x > width/2-50-35 && x < width/2-50+35 && y > height/2+115-35 && y < height/2+115+35) {
-       ipServer += "5";
+       text += "5";
      }
      if(x > width/2+50-35 && x < width/2+50+35 && y > height/2+115-35 && y < height/2+115+35) {
-       ipServer += "6";
+       text += "6";
      }
      if(x > width/2-150-35 && x < width/2-150+35 && y > height/2+215-35 && y < height/2+215+35) {
-       ipServer += "7";
+       text += "7";
      }
      if(x > width/2-50-35 && x < width/2-50+35 && y > height/2+215-35 && y < height/2+215+35) {
-       ipServer += "8";
+       text += "8";
      }
      if(x > width/2+50-35 && x < width/2+50+35 && y > height/2+215-35 && y < height/2+215+35) {
-       ipServer += "9";
+       text += "9";
      }
      if(x > width/2+150-35 && x < width/2+150+35 && y > height/2+215-35 && y < height/2+215+35) {
-       ipServer += "0";
+       text += "0";
      }
      
      if(x > width/2+150-35 && x < width/2+150+35 && y > height/2+115-35 && y < height/2+115+35) {
-       ipServer += ".";
+       text += ".";
+     }
+     
+     if(x > width/2+150-35 && x < width/2+150+35 && y > height/2+15-35 && y < height/2+15+35) {
+       text = "";
      }
    }
    
    
+   public boolean valid(int x, int y) {
+     if(x > width/2-85 && x < width/2+85 && y > 650-35 && y < 650+35) {
+       ipServer = text;
+       return true;
+     } else {
+       return false;
+     }
+   }
+   
    public String ip() {
-     
-     
-     
-     
-     return this.ipServer;
+     return ipServer;
    }
 
 
