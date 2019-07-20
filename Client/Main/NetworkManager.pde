@@ -4,7 +4,7 @@ class NetworkManager{
   
   int tempPortTx = 5000;
   
-  String ipServer;
+  String ipServer = "192.168.0.207";
   
   String received;
   
