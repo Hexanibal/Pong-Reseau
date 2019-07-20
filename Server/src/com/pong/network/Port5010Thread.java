@@ -8,30 +8,29 @@ import java.net.SocketException;
 
 import com.pong.Main;
 
-public class RegisteringThread implements Runnable{
+public class Port5010Thread implements Runnable{
 
-	@SuppressWarnings("resource")
 	@Override
 	public void run() {
 		while(true) {
 
 			try {
 
-				DatagramSocket server = new DatagramSocket(Ports.REGISTERING.getValue());
+				DatagramSocket server = new DatagramSocket(Ports.CLIENT_1.getValue());
 
 				while(true){
 
 					byte[] buffer = new byte[128];
 					DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
 					
-					System.out.println("[registering thread] en attente");
+					System.out.println("[Port 5010 thread] en attente");
 					
 					server.receive(packet);
 
 
 					String data = new String(packet.getData());
 					InetAddress ip = packet.getAddress();
-					Main.net.computePacket(Ports.REGISTERING, ip, data);
+					Main.net.computePacket(Ports.CLIENT_1, ip, data);
 					
 					
 					packet.setLength(buffer.length);

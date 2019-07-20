@@ -1,26 +1,32 @@
 package com.pong.clients;
 
+import java.io.IOException;
+import java.net.InetAddress;
+
+import com.pong.Main;
+
 public class Client {
 
 	
-	private String ip;
+	private InetAddress ip;
+	private int port;
 	
-	
-	public Client() {
-		
+	public Client(InetAddress ip, int port) {
+		this.ip = ip;
+		this.port = port;
 	}
 	
 	
 	
-	public void sendData() {
-		
+	public void sendData(String data) throws IOException {
+		Main.net.sendPacket(ip, port, data);
 	}
 	
-	public String getIp() {
+	public InetAddress getIp() {
 		return ip;
 	}
 	
-	public void setIp(String ip) {
+	public void setIp(InetAddress ip) {
 		this.ip = ip;
 	}
 
