@@ -7,7 +7,6 @@ import java.net.InetAddress;
 import java.net.SocketException;
 
 import com.pong.Main;
-import com.pong.clients.Client;
 
 
 public class NetworkManager {
@@ -23,7 +22,7 @@ public class NetworkManager {
 		registeringThread.start();
 		
 		
-		//lancer les threads
+		//vérifier la connection des clients
 	}
 	
 	
@@ -36,21 +35,29 @@ public class NetworkManager {
 			
 		} else if(port == Ports.CLIENT_1){
 			
-			
 		} else if(port == Ports.CLIENT_2) {
-			
 			
 		}
 	}
 	
 	
-	public void sendPacket(InetAddress ip, int port, String message) throws IOException {
+	public void sendPacket(InetAddress ip, Ports port, String message) throws IOException {
 		byte[] data = message.getBytes();
 		//InetAddress adresse = InetAddress.getByName(ip);
 		InetAddress adresse = ip;
-		DatagramPacket dp = new DatagramPacket(data, data.length, adresse, port);
+		DatagramPacket dp = new DatagramPacket(data, data.length, adresse, port.getValue());
 		socket.send(dp);
 	}
 	
+	
+	public void runThread(Ports portClient) {
+		if(portClient == Ports.CLIENT_1) {
+			Thread port5010Thread = new Thread(new Port5010Thread(), "port5010Thread");
+			port5010Thread.start();
+		}else if(portClient == Ports.CLIENT_2) {
+			Thread port5020Thread = new Thread(new Port5020Thread(), "port5020Thread");
+			port5020Thread.start();
+		}
+	}
 	
 }

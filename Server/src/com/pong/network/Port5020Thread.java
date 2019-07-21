@@ -23,7 +23,7 @@ public class Port5020Thread implements Runnable{
 					byte[] buffer = new byte[128];
 					DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
 					
-					System.out.println("[Port 5010 thread] en attente");
+					System.out.println("[Port 5010] en attente");
 					
 					server.receive(packet);
 
