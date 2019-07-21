@@ -1,7 +1,7 @@
 import hypermedia.net.*;
 UDP udp;
 
-int state = 1;
+int state = 3;
 
 String ipServer = null;
 
@@ -13,6 +13,7 @@ String received;
 String message = "1010";
 
 GUI gui;
+Pong pong;
 
  
  void setup() {
@@ -21,6 +22,7 @@ GUI gui;
    udp.listen(true);
    
    gui = new GUI();
+   pong = new Pong();
  }
 
  void draw()
@@ -38,13 +40,17 @@ GUI gui;
 
      }
    }
+   if(state == 3) {
+     pong.display();
+   }
  }
 
 
 
  void mousePressed() {
+   if(state == 1 || state == 2){
    gui.click(state, mouseX, mouseY);
-   
+   }
    if(state == 1){
      if(gui.valid(mouseX, mouseY)) {
        ipServer = gui.ip();
