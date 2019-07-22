@@ -18,6 +18,8 @@ public class ClientsManager {
 	
 	Client client;
 	public void registerClient(InetAddress ip) {
+		if(clients.size() > 1) return;
+		
 		client = new Client(ip, (clients.size() == 0) ? Ports.CLIENT_1 : Ports.CLIENT_2);
 		addClient(client);
 		Main.net.runThread(client.getPortServer());

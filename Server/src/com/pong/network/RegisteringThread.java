@@ -21,10 +21,10 @@ public class RegisteringThread implements Runnable{
 
 				while(true){
 
-					byte[] buffer = new byte[128];
+					byte[] buffer = new byte[6];
 					DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
 					
-					System.out.println("[registering thread] en attente");
+					//System.out.println("[registering thread] en attente");
 					
 					server.receive(packet);
 
@@ -32,6 +32,10 @@ public class RegisteringThread implements Runnable{
 					String data = new String(packet.getData());
 					InetAddress ip = packet.getAddress();
 					Main.net.computePacket(Ports.REGISTERING, ip, data);
+					
+					//System.out.println("[registering thread] Packet reçu de " + ip.toString());
+					
+					System.out.print(data);
 					
 					
 					packet.setLength(buffer.length);

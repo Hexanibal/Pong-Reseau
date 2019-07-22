@@ -17,7 +17,8 @@ public class Main {
 
 		net = new NetworkManager();
 		clientsManager = new ClientsManager();
-		pong = new Pong();
+		//pong = new Pong();
+		
 		
 	}
 
