@@ -10,7 +10,7 @@ int portRx = 5001;
 
 String received;
 
-String message = "1010";
+String message = "message";
 
 GUI gui;
 Pong pong;
@@ -43,7 +43,6 @@ Pong pong;
    if(state == 3) {
      pong.display();
    }*/
-   println(udp.address());
    udp.send("#heho$", "90.14.254.49", 5000);
  }
 
@@ -56,7 +55,7 @@ Pong pong;
    if(state == 1){
      if(gui.valid(mouseX, mouseY)) {
        ipServer = gui.ip();
-       message = "5010";
+       message = "#heho$";
        state = 2;
        println(gui.ip());
      }
