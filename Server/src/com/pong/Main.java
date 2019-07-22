@@ -1,7 +1,8 @@
 package com.pong;
 import java.net.SocketException;
 
-import com.pong.clients.ClientsManager;
+import com.pong.game.Pong;
+import com.pong.network.ClientsManager;
 import com.pong.network.NetworkManager;
 
 

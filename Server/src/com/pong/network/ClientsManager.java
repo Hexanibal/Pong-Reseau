@@ -1,7 +1,9 @@
-package com.pong.clients;
+package com.pong.network;
 
 import java.net.InetAddress;
 import java.util.ArrayList;
+
+import com.pong.Main;
 
 public class ClientsManager {
 	
@@ -16,8 +18,9 @@ public class ClientsManager {
 	
 	Client client;
 	public void registerClient(InetAddress ip) {
-		client = new Client(ip, (clients.size() == 0) ? 5010 : 5020);
+		client = new Client(ip, (clients.size() == 0) ? Ports.CLIENT_1 : Ports.CLIENT_2);
 		addClient(client);
+		Main.net.runThread(client.getPortServer());
 	}
 	
 	public void addClient(Client client){
@@ -34,5 +37,9 @@ public class ClientsManager {
 				return client;
 		}
 		return null;
+	}
+	
+	public Client getClientByIndex(int index) {
+		return (index != 0 && index != 1) ? null : (index == 0) ? clients.get(0) : clients.get(1);
 	}
 }

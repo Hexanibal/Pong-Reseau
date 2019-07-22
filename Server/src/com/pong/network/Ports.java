@@ -2,9 +2,12 @@ package com.pong.network;
 
 public enum Ports {
 
+	
 	REGISTERING(5000),
+	CLIENT_RX(5001),
 	CLIENT_1(5010),
 	CLIENT_2(5020);
+	
 	
 	int port;
 	private Ports(int port) {

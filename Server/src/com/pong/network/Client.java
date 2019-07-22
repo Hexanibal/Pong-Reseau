@@ -1,4 +1,4 @@
-package com.pong.clients;
+package com.pong.network;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -9,17 +9,20 @@ public class Client {
 
 	
 	private InetAddress ip;
-	private int port;
+	private Ports portServer;
+	private Ports portClient;
 	
-	public Client(InetAddress ip, int port) {
+	
+	public Client(InetAddress ip, Ports portServer) {
 		this.ip = ip;
-		this.port = port;
+		this.portServer = portServer;
+		this.portClient = Ports.CLIENT_RX;
 	}
 	
 	
 	
 	public void sendData(String data) throws IOException {
-		Main.net.sendPacket(ip, port, data);
+		Main.net.sendPacket(ip, portClient, data);
 	}
 	
 	public InetAddress getIp() {
@@ -28,6 +31,10 @@ public class Client {
 	
 	public void setIp(InetAddress ip) {
 		this.ip = ip;
+	}
+	
+	public Ports getPortServer() {
+		return this.portServer;
 	}
 
 }

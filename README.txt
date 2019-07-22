@@ -17,5 +17,8 @@ Client:
 -  State 3: Menu d'attente de connexion du deuxième joueur
 -  State 4: Jeu
 
+PacketTypes:
+- #heho$
+- #pads$<Pad0.Y>$<Pad1.Y>$
 
 
