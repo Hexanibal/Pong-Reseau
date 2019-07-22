@@ -1,7 +1,7 @@
 import hypermedia.net.*;
 UDP udp;
 
-int state = 3;
+int state = 1;
 
 String ipServer = null;
 
@@ -18,7 +18,7 @@ Pong pong;
  
  void setup() {
    size(1280, 720);
-   udp = new UDP(this, portTx);
+   udp = new UDP(this, portRx);
    udp.listen(true);
    
    gui = new GUI();
@@ -26,7 +26,7 @@ Pong pong;
  }
 
  void draw()
- {
+ { /*
    if(state == 1){
      gui.display(state);
    }
@@ -42,7 +42,9 @@ Pong pong;
    }
    if(state == 3) {
      pong.display();
-   }
+   }*/
+   println(udp.address());
+   udp.send("#heho$", "90.14.254.49", 5000);
  }
 
 
